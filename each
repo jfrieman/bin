@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+
+test "$#" -lt 1 && echo "[ERROR] $0: missing command" >&2 && exit 1
+
+command="$@"
+
+for dir in */; do
+	echo ">>> [$dir] <<<"
+	pushd "$dir" >> /dev/null
+	eval "$command"
+	popd >> /dev/null
+	echo ""
+done

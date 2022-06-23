@@ -1,0 +1,6 @@
+#!/bin/bash
+
+find . -maxdepth 2 -name "pom.xml" \
+  -execdir sh -c "mvn spotless:apply && mvn clean verify" {} \;
+find . -maxdepth 3 -name "package.json" \
+  -execdir sh -c "npm run format && npm run lint && npm run test" {} \;
