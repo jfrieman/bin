@@ -1,0 +1,6 @@
+#!/bin/bash
+
+test "$#" -lt 1 && echo "Usage: $0 <WLAN-Name>" >&2 && exit 1
+
+netsh wlan show profile "$1" key=clear | awk '/inhalt/{print $3}'
+netsh wlan show profile "$1" key=clear | awk '/Content/{print $3}'
